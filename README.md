@@ -1,4 +1,5 @@
-# VM API
+<img src="docs/assets/vm-api-logo.svg#gh-light-mode-only" alt="VM API logo" width="420">
+<img src="docs/assets/vm-api-logo-white.svg#gh-dark-mode-only" alt="VM API logo" width="420">
 
 VM API provides a provider-neutral Kubernetes API for managing virtual machines across infrastructure platforms. It defines portable VM configuration and a generic controller, while infrastructure providers provision and manage the underlying machines.
 
