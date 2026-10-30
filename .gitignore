@@ -1,2 +1,5 @@
 # Tooling binaries installed by "make tools".
 hack/tools/bin/
+
+# macOS Finder metadata.
+.DS_Store

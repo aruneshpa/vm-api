@@ -167,13 +167,17 @@ fix: lint-go ## Tries to fix errors reported by lint-go-full target
 MDLINT_IMAGE ?= lifeguard-docker-local.packages.vcfd.broadcom.net/github-runner/mdlint-alpine:0.44.0
 TYPOS_IMAGE  ?= lifeguard-docker-local.packages.vcfd.broadcom.net/github-runner/typos-cli:1.40.0
 
+# CI can use installed public tools without accessing the container mirrors.
+MDLINT ?= $(CRI_BIN) run --rm -v "$(ROOT_DIR)":/build $(MDLINT_IMAGE)
+TYPOS ?= $(CRI_BIN) run --rm -v "$(ROOT_DIR)":/workdir:ro -w /workdir $(TYPOS_IMAGE)
+
 .PHONY: lint-markdown
 lint-markdown: ## Lint the project's markdown
-	$(CRI_BIN) run --rm -v "$$(pwd)":/build $(MDLINT_IMAGE)
+	$(MDLINT)
 
 .PHONY: typos
 typos: ## Detect typos
-	$(CRI_BIN) run --rm -t -v "$$(pwd)":/$$(pwd):ro $(TYPOS_IMAGE) /$$(pwd)
+	$(TYPOS) .
 
 ## --------------------------------------
 ## Verification

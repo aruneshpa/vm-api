@@ -61,6 +61,14 @@ The controller test target installs its Ginkgo and envtest dependencies. Root co
 
 The optional `make lint-markdown` and `make typos` targets use container images. Their current defaults require access to a private registry; contributors without that access must supply compatible images through `MDLINT_IMAGE` and `TYPOS_IMAGE`. The build, Go lint, and code-generation checks do not require that registry.
 
+The [CI workflow](.github/workflows/ci.yml) runs the API and controller Go lint targets, Markdown lint, and typo checks for pull requests to `main` and release branches, and pushes to `main`. It installs public tools without private registry credentials. To run the same documentation checks locally with installed tools:
+
+```bash
+# Install markdownlint-cli 0.44.0 and typos 1.40.0 first.
+make lint-markdown MDLINT='markdownlint "**/*.md"'
+make typos TYPOS=typos
+```
+
 ## Install the API
 
 Install the CRD into a Kubernetes cluster:
