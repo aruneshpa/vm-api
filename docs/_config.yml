@@ -1,5 +1,0 @@
-title: VM API
-description: A portable, provider-neutral Kubernetes API for virtual machines.
-theme: minima
-markdown: kramdown
-# Once the custom domain is configured, add docs/CNAME containing: vm-api.io
